@@ -1,0 +1,139 @@
+% !TeX encoding=utf8
+% !TeX program = pdflatex
+% !TeX spellcheck = en-US
+% !BIB = biber
+
+\documentclass[journal]{IEEEtran}
+\ifCLASSINFOpdf
+\usepackage[pdftex]{graphicx}
+%\graphicspath{{./figs}{./moreFigures}}
+\DeclareGraphicsExtensions{.pdf}
+
+\usepackage{amsmath}
+%\usepackage{algorithmic}
+%\usepackage{array}
+
+% Nice todo package based on tikz
+\usepackage{todonotes}
+
+% Nice references
+\usepackage{cleveref}
+
+% Shrink Itemize in table
+\usepackage{enumitem}
+
+%\usepackage[caption=false,font=footnotesize]{subfig}
+%\usepackage{url}
+\usepackage[acronym, shortcuts]{glossaries}
+
+%\usepackage[backend=biber]{biblatex}
+\usepackage{url}
+
+\hyphenation{op-tical net-works semi-conduc-tor}
+\usepackage{footnote}
+%\setlength{\belowcaptionskip}{30pt}
+%\setlength{\textfloatsep}{\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
+%\usepackage[belowskip=-15pt,aboveskip=0pt]{caption}
+
+\usepackage{color}
+% For highlighting changes in this version with red color
+\newcommand{\highlighttext}[1] {\textcolor{blue}{#1}}
+% Remove all text highlighting
+% Useful to generate the final version of the PDF
+%\newcommand{\highlighttext}[1] {#1}
+\usepackage[belowskip=-10pt,aboveskip=5pt]{caption}
+%\setlength{\intextsep}{10pt plus 2pt minus 2pt}
+
+\makeatletter
+\patchcmd{\@maketitle}
+  {\addvspace{0.5\baselineskip}\egroup}
+  {\addvspace{-1.2\baselineskip}\egroup}
+  {}
+  {}
+\makeatother 
+ 
+ 
+\usepackage{tabu}
+ 
+\begin{document}
+\title{Advancing Experimentation-as-a-Service \\Through Urban IoT Experiments}
+
+
+\author{Dimitrios Amaxilatis,
+        Dennis Boldt,
+        Johnny Choque,
+        Luis Diez, 
+        Etienne Gandrille,
+        Sokratis Kartakis, 
+        Georgios Mylonas, 
+        and Lasse Steenbock Vestergaard% <-this % stops a space
+\thanks{The authors are listed in alphabetical order.}
+\thanks{D. Amaxilatis and G. Mylonas are with Computer Technology Institute and Press Diophantus, Greece. E-mail:  \{amaxilat, mylonasg\}@cti.gr}% <-this % stops a space
+\thanks{D. Boldt is with University of L\"ubeck, Germany. E-mail: boldt@itm.uni-luebeck.de}% <-this 
+\thanks{J. Choque and L. Diez are with University of Cantabria, Spain. E-mail: \{jchoque, ldiez\}@tlmat.unican.es}
+\thanks{E. Gandrille is with Commissariat \`a l'\'energie atomique et aux \'energies alternatives, France. E-mail: etienne.gandrille@cea.fr}
+\thanks{S. Kartakis is with Intel Labs Europe, United Kingdom (E-mail: sokratis.kartakis@intel.com)}
+\thanks{L. S. Vestergaard is with Alexandra Instituttet, Denmark. E-mail: lasse.vestergaard@alexandra.dk}% <-this 
+}
+
+%\markboth{Journal of \LaTeX\ Class Files,~Vol.~14, No.~8, August~2015}%
+%{Shell \MakeLowercase{\textit{et al.}}: Bare Demo of IEEEtran.cls for IEEE Journals}
+\maketitle
+
+\begin{abstract}
+Smart cities are becoming a vibrant application domain for a number of science fields. As such, service providers and stakeholders are beginning to integrate co-creation aspects into current implementations to shape the future smart city solutions. In this context, holistic solutions are required to test such aspects in real city-scale IoT deployments, considering the complex city ecosystems. In this work, we discuss OrganiCity's implementation of an Experimentation-as-a-Service framework, presenting a toolset that allows developing, deploying and evaluating smart city solutions in a one-stop shop manner. This is the first time such an integrated toolset is offered in the context of a large-scale IoT infrastructure, which spans across multiple European cities. We discuss the design and implementation of the toolset, presenting our view on what Experimentation-as-a-Service should provide, and how it is implemented. We present initial feedback from 25 experimenter teams that have utilized this toolset in the OrganiCity project, along with a discussion on two detailed actual use cases to validate our approach. Learnings from all experiments are discussed as well as architectural considerations for platform scaling. Our feedback from experimenters indicates that Experimentation-as-a-Service is a viable and useful approach.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Smart cities, Experimentation, IoT, real-world deployment, evaluation
+\end{IEEEkeywords}
+
+\IEEEpeerreviewmaketitle
+
+\input{intro}
+\input{sota}
+\input{learnings}
+\input{advanced}
+\input{conclusion}
+
+\section*{Acknowledgment}
+This work was partially supported by the OrganiCity research project funded by the European Union, under grant agreement No. 645198 of the Horizon 2020 research and innovation program. We would also like to thank the experimenter teams and volunteers who participated in OrganiCity.
+
+\bibliographystyle{IEEEtran}
+\bibliography{biblio}
+\vspace{-10ex}
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1in,clip,keepaspectratio]{figures/amaxilat.jpg}}]{Dimitrios Amaxilatis}
+received his MSc degree in Computer Science from the University of Patras, Greece, in 2013, where he is currently pursuing the PhD degree. From 2010, he has been with the Computer Technology Institute in Patras, Greece participating in several international research projects. He was also member of the founding teams of two technological startups (codebender.cc and Sensorflare). His research interests include distributed algorithms, wireless sensor networks, home and building automation, smart city and participatory sensing.
+\end{IEEEbiography}
+\vspace{-7ex}
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1in,clip,keepaspectratio]{figures/boldt.jpg}}]{Dennis Boldt}
+received his MSc in Computer Science from the University of L{\"u}beck. Since 2012 he works as a research assistant at the same University and currently pursues his PhD.
+He has been involved in several national and international research projects including SPITFIRE (FP7) and OrganiCity (H2020).
+His research interests are peer-to-peer networks, full stack web-based technologies and network security.
+\end{IEEEbiography}
+\vspace{-7ex}
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1in,clip,keepaspectratio]{figures/jchoque.jpg}}]{Johnny Choque}
+Johnny Choque received the electronic engineering degree from the National University of Engineering, Peru, in 1995 and PhD degree (cum laude) in communications engineering from the University of Cantabria, Spain, in 2014. Since 2000, he has been employed as researcher at the University of Cantabria, working in several projects of Framework Programme and Horizon 2020 of EU. His current research interests include LPWAN, Smart Cities, IoT and Blockchain.
+\end{IEEEbiography}
+\vspace{-7ex}
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1in,clip,keepaspectratio]{figures/ldiez.jpg}}]{Luis Diez}
+received his MSc and PhD from University of Cantabria, Spain, in 2013 and 2018 respectively. He has been involved in different international and industrial research projects. He is currently a Senior Researcher at the Network Planning and Mobile Communications Laboratory, University of Cantabria. His research interests are resource management in wireless heterogeneous networks, and IoT service provisioning.
+\end{IEEEbiography}
+\vspace{-7ex}
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1in,clip,keepaspectratio]{figures/gandrille.jpg}}]{Etienne Gandrille}
+received his PhD from University of Grenoble. As a researcher at Commissariat à l'\'{E}nergie atomique et aux \'{E}nergies alternatives (CEA), his research interests focus on Internet of Things, Smart Cities and Open Data. He has been involved in several international research and innovation projects including SocIoTal (FP7), OrganiCity (H2020), BigClouT (H2020) and Brain-IoT (H2020).
+\end{IEEEbiography}
+\vspace{-7ex}
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1in,clip,keepaspectratio]{figures/mylonasg.jpg}}]{Georgios Mylonas}
+is a researcher at Computer Technology Institute and Press ''Diophantus'', Greece. He received his PhD from the University of Patras, Greece. His research interests lie in the areas of wireless sensor networks and distributed systems, IoT and pervasive games. He has been involved in the AEOLUS, WISEBED, Smartsantander, AUDIS and OrganiCity projects. He is the coordinator of the Green Awareness in Action (GAIA) H2020 project.
+\end{IEEEbiography}
+\vspace{-7ex}
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1in,clip,keepaspectratio]{figures/kartakis.jpg}}]
+{Sokratis Kartakis} received the B.Sc. degree (Hons.) and the M.Sc. degree in computer science from the University of Crete, Heraklion, Greece, in 2006 and 2008, respectively, and the Ph.D. degree in computer science from the Department of Computing, Imperial College London, London, U.K. in 2017. He has been involved in several international research projects collaborating with Yale University, NEC Japan, and ICS-Forth Greece. Since 2017, he has been an IoT Research Scientist with Intel Labs Europe, London, U.K. His current research interests include edge signal processing and machine learning, and communication optimization for IoT.
+
+\end{IEEEbiography}
+\vspace{-7ex}
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1in,clip,keepaspectratio]{figures/vester.jpg}}]{Lasse Steenbock Vestergaard}
+received his MSc in Information Science from University of Aarhus, Denmark, and is currently pursuing a PhD focusing on IoT prototyping within Smart Cities at Alexandra Institute. He has been involved in national and international research and innovation projects including OUTSMART (FP7), SmartSantander (FP7), CityPulse (FP7), OrganiCity (H2020) and Synchronicity (H2020). His research interests are creative coding, API usability and IoT prototyping.
+\end{IEEEbiography}
+\end{document}

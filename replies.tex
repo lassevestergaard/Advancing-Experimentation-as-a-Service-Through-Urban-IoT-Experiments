@@ -1,0 +1,288 @@
+\documentclass[letterpaper]{article}
+\setlength{\parindent}{0em}
+
+\usepackage{a4wide}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{color}
+\usepackage{ifthen}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\newcommand{\mc}[1]{\mathcal{#1}}
+
+\usepackage[caption=false,font=footnotesize]{subfig}  % options needed for %IEEE
+
+
+
+
+\renewcommand{\thefootnote}{\arabic{footnote}}
+
+\newcounter{reviewer}
+\setcounter{reviewer}{0}
+\newcounter{revcomment}
+\newcounter{editorcomment}
+\newcommand{\Review}[2]%
+{\clearpage\stepcounter{reviewer}\setcounter{revcomment}{0}{\textbf{\Large{Reviewer \arabic{reviewer}}}%
+		\ifthenelse{\equal{#1}{0}}{\\[12pt]}%
+		{\\[6pt]\fbox{\parbox{0.97\textwidth}{\begin{itshape}#1\end{itshape}}}\\[6pt]%
+			\begin{minipage}{0.98\textwidth}{#2}\end{minipage}\\[12pt]}}}
+
+\newcommand{\Comment}[2]%
+{\stepcounter{revcomment}\fbox{\parbox{0.99\textwidth}{\textbf{[R\arabic{reviewer}.C\arabic{revcomment}] }\begin{itshape}#1\end{itshape}}}\\[6pt]\begin{minipage}{0.99\textwidth}{#2}\end{minipage}\\[12pt]}
+
+\newcommand{\Editor}[2]%
+{\clearpage\setcounter{editorcomment}{0}{\textbf{\Large{Response to the associate editor}}%
+		\ifthenelse{\equal{#1}{0}}{\\[12pt]}%
+		{\\[6pt]\fbox{\parbox{0.97\textwidth}{\begin{itshape}#1\end{itshape}}}\\[6pt]%
+			\begin{minipage}{0.98\textwidth}{#2}\end{minipage}\\[12pt]}}}
+
+\newcommand{\EditorComment}[2]%
+{\stepcounter{editorcomment}\fbox{\parbox{0.97\textwidth}{\textbf{[E.C\arabic{editorcomment}] }\begin{itshape}#1\end{itshape}}}\\[6pt]\begin{minipage}{0.98\textwidth}{#2}\end{minipage}\\[12pt]}
+
+\newcommand{\Answer}[1]%
+{\begin{center}\begin{minipage}{0.9\textwidth}{\begin{bfseries}#1\end{bfseries}}\end{minipage}\end{center}\vspace{12pt}}
+
+
+\newcommand{\ld}[1]{{\color{red}{[ld] #1}}}
+\newcommand{\com}[2]{{\color{red}{\st{#1}}\color{blue}{\underline{#2}}}}
+
+\newcommand{\highlighttext}[1] {\textcolor{blue}{#1}}
+
+\newcommand{\PaperExcerpt}[1]%
+{\begin{center}\begin{minipage}{0.9\textwidth}{\begin{bfseries}\textcolor{blue}{#1}\end{bfseries}}\end{minipage}\end{center}\vspace{12pt}}
+
+
+
+\begin{document}
+	
+	\title{\vspace{-0.4in}Response to the Reviewers of IoT-4516-2018, \\``Advancing Experimentation-as-a-Service Through Urban IoT Experiments''}
+	\date{}
+	\author{Dimitrios Amaxilatis,
+		Dennis Boldt,
+		Johnny Choque,
+		Luis Diez, 
+		Etienne Gandrille,\\
+		Sokratis Kartakis,
+		Georgios Mylonas, 
+		and Lasse Steenbock Vestergaard}
+	\maketitle
+	
+	\vspace{-0.1in}
+	
+	We would like to thank the referees for their thorough reviews and valuable comments, which have been greatly helpful for improving the paper. 
+	% * <lasse.vestergaard@alexandra.dk> 2018-08-23T12:17:39.099Z:
+	% 
+	% > referees
+	% Should it be "reviewers" instead?
+	% 
+	% ^.
+	% 
+	In the following, we provide responses to the reviewers' comments, explaining how they have been addressed in the new version of the paper. Finally, for the convenience of the referees, we have appended a marked version of the manuscript, highlighting the amendments we have made in blue font.
+	
+	\clearpage
+	\Editor
+	{
+		We have completed the review process of the above referenced paper for the IEEE IEEE Internet of Things Journal and recommend that your paper undergo a Major Revision. Your reviews are enclosed. We would suggest that you revise your paper according to the reviewers' comments and resubmit the paper for a second round of reviews.
+		We hope you will be able to implement the comments of the reviewers.}{
+		In this new version we have taken into account all the comments made by the reviewers, to better clarify various aspects. 
+		
+		First, we have modified the paper structure to better show the learning process followed to develop the OC platform by means of open calls. In addition, taking into account the reviewers' comments, we have added text to clarify the purpose of the different open calls.
+		
+		In this document, we provide detailed answers to all the reviewers' comments, and we also pinpoint the changes that were made in the manuscript. We hope you find this new version satisfactory.
+	}
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Here we start with reviewer 1	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+	\clearpage
+	\Review{}{}
+	\Comment
+	{
+		Add a specific description and image of your designed toolset
+	}
+	{
+		We appreciate this comment, since it let us elaborate around the purpose of the paper. This manuscript focuses on the evolution of the OC platform as a consequence of the learnings obtained during the first open call. In this regard, we briefly explain the architectural overview in the introduction, and refer the reader to previous publications which explain, in detail, the toolset and architectural principles of the framework; in particular references [9] and [15].\\	
+		
+		In addition, we have added explanatory text in the \emph{Introduction} section to better explain the paper's scope:
+		
+		\PaperExcerpt{Open calls have had a twofold objective: first to help maturing the platform by gathering feedback from external users; and secondly to analyze the platform sustainability for the future. Throughout this paper, accepted open call projects are termed experiments, and the actual people conducting these are referred to as experimenters and experiment team interchangeably. In addition, the term experimentation refers to the process of conducting an actual experiment.
+		The first version of the OC platform [9] was designed and validated within the OrganiCity consortium.\\\\
+		This initial version was exploited during the first open call, which served to gather information and feedback from experimenters. Afterwards, the platform was tweaked according to the feedback and the new version was released in the second open call, which was devoted to developing a co-creation methodology for establishing cross-collaboration between stakeholders, communities, sectors and countries in a smart city context.
+		In this paper we focus on the technical evolution, so that the work presented hereinafter spans from the period from which the OC platform was first deployed (initiation of first open call) to shortly before the second open call. In the first open call, a number of experiments have been selected and implemented, over a period of six months. Thanks to this key part of the OC project, experimenters have played an active role in the design and validation of our platform.}
+	 
+		
+		\small{[9] V. Guti\'errez, E. Theodoridis, G. Mylonas, F. Shi, U. Adeel, L. Diez, D. Amaxilatis, J. Choque, G. Camprodom, J. McCann, and L. Muñoz, ``Co-creating the cities of the future,'' Sensors, vol. 16, no. 11, 2016. [Online].  Available: http://www.mdpi.com/1424-8220/16/11/1971 }\\
+		
+		\small{	[15] V. Guti\'errez, D. Amaxilatis, G. Mylonas, and L. Muñoz, ``Empowering citizens towards the co-creation of sustainable cities,'' IEEE Internet of Things Journal, vol. PP, no. 99, pp. 1–1, 2017.}\\
+	}
+	%%	
+	\Comment
+	{
+		Please add the comparison with prior works
+	}
+	{
+		Considering the target of this paper (mentioned above), we have compared the OC platform with existing ones. This is initially done in \emph{Section I. Introduction}, where we mention other co-creation frameworks, and indicate how the OC platform differs from those. In particular, we compare it with those described in references [3-8].
+		
+		Afterwards, in \emph{Section II. Related Work}, we mention ongoing initiatives with a similar scale to that of OrganiCity, in particular in terms of data federation. However, as mentioned in the text, the OC platform is the only one aiming for co-creation on such a large scale. 
+	}
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Here we start with reviewer 2	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+	\clearpage
+	\Review
+	{
+		The topic of the paper is of paramount interest and the authors did an outstanding work. However there are a few suggestions that could contribute to improve the manuscript.
+	}
+	{
+		We would like to thank the reviewer for the thorough review, and for recognizing the contributions of this paper. We have modified the manuscript in order to better explain the scope of the different open calls, and why we only used the feedback provided by the experiments of the first open call. In addition, we have modified the paper structure to better map the learnings and the platform modifications. Finally, the manuscript has been throughly revised to clarify the other comments, and to fix typos and misspellings.
+	}
+	%%
+	\Comment
+	{
+		I understand that the authors are improving the OrganiCity (OC) project considering the comments and suggestions of users. They have conducted two open calls to select several experiments to implement. The aspect that stranged me the most was that the authors describe the status of the OC platform as it is in the second call, but show the experiments and comments retrieved in the first call. It is not usual to describe one platform and show the results of its previous version.
+	}
+	{	
+		We really appreciate this comment, since it allows us to improve the explanation of the open calls process. Before starting the open calls, the OC platform was designed and internally evaluated. This evaluation focused on checking the functionality and proper coordination of the various components. After this, the first open call was carried out in order to gather technical feedback from external users, who did not belong to the OC project consortium. The external feedback was then used to plan and perform a major refactoring of the entire OC platform. After that, the second open call was carried out on the grounds that the OC platform was stable and able to satisfy users' needs. The second open call was pivoting around co-creation processes, and how different city stakeholders could develop urban services collaboratively.\\
+		
+		Since the first open call was dedicated to technical platform evaluation, and the second open call was targeted development of generalizable co-creation methods, this paper focuses on the output of the first open call. In order to clarify this, the \emph{Introduction} section has been modify by adding the following text:
+		
+		\PaperExcerpt{Open calls have had a twofold objective: first to help maturing the platform by gathering feedback from external users; and secondly to analyze the platform sustainability for the future. Throughout this paper, accepted open call projects are termed experiments, and the actual people conducting these are referred to as experimenters and experiment team interchangeably. In addition, the term experimentation refers to the process of conducting an actual experiment.
+		The first version of the OC platform [9] was designed and validated within the OrganiCity consortium.\\\\
+		This initial version was exploited during the first open call, which served to gather information and feedback from experimenters. Afterwards, the platform was tweaked according to the feedback and the new version was released in the second open call, which was devoted to developing a co-creation methodology for establishing cross-collaboration between stakeholders, communities, sectors and countries in a smart city context.
+		In this paper we focus on the technical evolution, so that the work presented hereinafter spans from the period from which the OC platform was first deployed (initiation of first open call) to shortly before the second open call. In the first open call, a number of experiments have been selected and implemented, over a period of six months. Thanks to this key part of the OC project, experimenters have played an active role in the design and validation of our platform.}
+	}		
+	%%
+	\Comment
+	{
+		The manuscript will improve if the authors highlight the relationship between the learnings described in section IV and the platform described in section III. The authors already state in page 7, col 2, lines 41-47 the functionalities incorporated for the second call, but these lines are in the middle of section IV.A.3). These sentences are important because they state that the authors have taken into account the suggestions of the experiments done during the first call. Maybe one option could be to split the last two paragraphs of IV.A.3) (from page 7, col 2, line 40 to page 8, col 1, line 8) in a new item IV.A.4). Other option could be to add a second column in Table 1 indicateing the functionality implemented in order to try to eliminate the negative comments raised by the users during the first call. 
+	}
+	{
+		We appreciate that this has been pinpointed, and we agree that the connection between learnings and platform modifications can be further improved. As a consequence, in the new version of the manuscript, we have modified the paper structure so that this connection becomes more evident to the reader. In particular, we have swapped around sections \emph{III} and \emph{IV}, so that the learnings are described before the platform modification. This allows us to highlight that the definition of new services and their modifications account to the learnings. The reviewer may see highlighted text in the new section \emph{IV} in the attached manuscript. \\
+		
+		In addition, we have implemented the reviewer's suggestion and added a new column to Table I indicating how we have tackled the users comments. Again, the modifications can be found in the attached manuscript in highlighted text.
+	}
+	%%
+	\Comment
+	{
+		The authors mention that the second open call was conducted in 2017-2018 over a period of 6 months. This means that the second open call is closed and its results are available. It would be of interest for the manuscript to incorporate these results in order to verify if the experience gathered in the second call confirms that the modifications introduced in the platform have solved the issues raised by the users of the first call.
+	}
+	{
+		We appreciate this comment. However, as explained before, the target of the second open call differs from that of the first one in a number of ways. In particular, the evaluation of the second open call focused on the experiments themselves, paying special attention to their sustainability and how they can contribute to keep the OC platform alive in the future. For that reason, learnings from the second open call are of a different nature overall, since the feedback provided by the users in this open call was different. \\
+		
+		As mentioned in the previous comment, we have modified the \emph{Section I. Introduction} to better explain the scope of the paper and the purpose of the open calls. In addition, we have added a link to the web page in which all the experiments (from the first and second open calls) are described. 
+	}
+	%% 
+	\Comment
+	{
+		Page 5, column 2, line 29.``The final trust value is calculated as the weighted average of these metrics with equal weight for all the parameters.'' Does it correspond to the average of the parameters? If so, it is more clear to state that ``The final trust value is calculated as the average of all the parameters''
+	}
+	{
+		Thank you for this comment, the referee is right and we agree that the sentence used was misleading. In the new version of the manuscript the sentence has be replaced as suggested.
+	}
+	%%
+	\Comment
+	{
+		The language is formal and appropriate, but there are some mistakes that should be corrected prior to the 	publication of this work. Two examples are:
+		\begin{itemize}
+			\item There is a space left in Page 2, column 2, line 32. “… approach,addressing”.
+			\item Page 6, col 2, lines 20-21. “…, but they reported that parts of it was missing.” The subject of the second part of the sentence is plural, but the verb is in singular.
+		\end{itemize}
+		These are really small errors that stain the great work made by the authors. I strongly suggest the authors to read the manuscript again in order to correct these errors.
+	}
+	{
+		We strongly appreciate the thorough review performed by the referee. We have revised the whole manuscript to correct mistakes and misspellings that could be found in the previous version, among them the ones mentioned by the reviewer.
+	}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Here we start with reviewer 3	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+	\Review
+	{
+		This manuscript provides information on some of the results obtained in the OrganiCity H2020 project.
+		It is a good work that deserves to be published in IEEE-IoT.
+	}
+	{
+		We would like to thank the reviewer for recognizing the contribution of this work. We have addressed the comment from the referee, as explained below.
+	}
+	%%
+	\Comment{
+		The authors should make some minor corrections and develop in more detail section III-B-3 -Experiment portal- indicating more clearly who performs which function in the creation and management of the experiments, as well as more detail in each of these parts:
+		\begin{itemize}	
+			\item Creation and management of experiments
+			\item Creation and management of assets
+			\item Experiment team management
+		\end{itemize}
+	}
+	{
+		Indeed, the Experimenter Portal is offered to experimenters, so that all these actions are performed by them. In order to clarify this and to elaborate on the mentioned functionalities, we have amended the text as follows:
+		
+		\PaperExcerpt{
+			By using the Experimenter Portal, experimenters can perform the following tasks:
+			%The main functionalities provided by the Experimenter Portal are related to the management of the experiment instance, and cover deployment and experimentation:
+			\begin{itemize}
+				\item \emph{Creation and management of experiments}: This functionality utilizes the User Management API. Following the dominant concept in IoT experimentation, each experiment instance is seen as a virtual testbed, and uniquely identified throughout the whole platform. This way experiment datasets and management information can be isolated. In addition, at any moment experiments can be stopped/restarted and edited (e.g., name, description, etc.). 
+				\item \emph{Creation and management of assets}: Leveraging the public platform APIs, the Experimenter Portal provides a graphical UI to create and edit assets, in order for experimenters to become familiar with the data format. In particular, the graphical UI is a JSON editor able to check that the data follows the OrganiCity format, providing useful warning messages otherwise.
+				\item \emph{Experiment team management}: Since co-creative experiments usually involve development teams rather than a single person, the Experimenter Portal also permits editing such teams. In this regard, at any moment the creator of the experiment can edit the team by adding or removing their members.
+			\end{itemize}	
+		}
+	}		
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Here we start with reviewer 4	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+	\Review{
+		This is an interesting paper about a massive IoT system oriented to provide services for different experimentation. It is well written and structured.The planning in to different calls for experimentation is innovative, but some concerns arise when reading this work.
+	}
+	{
+		We appreciate the referee's comments, and in the following we have addressed them all.
+	}
+	%%
+	\Comment
+	{
+		First, the description of the two calls is quite confusing in terms of the aims of each call. If the first call is oriented to obtain feedback, the specification of this feedback provides the requirements for the second call. From the paper, readers cannot infere which was the feedback from the description of the structure of the system.
+	}
+	{
+		We really appreciate this comment, since it allows us to improve the explanation of the open calls process. Before starting the open calls, the OC platform was designed and internally evaluated. This evaluation focused on checking the functionality and proper coordination of the various components. After this, the first open call was carried out in order to gather technical feedback from external users, who did not belong to the OC project consortium. The external feedback was then used to plan and perform a major refactoring of the entire OC platform. After that, the second open call was carried out on the grounds that the OC platform was stable and able to satisfy users' needs. The second open call was pivoting around co-creation processes, and how different city stakeholders could develop urban services collaboratively.\\
+		
+		Since the first open call was dedicated to technical platform evaluation, and the second open call was targeted development of generalizable co-creation methods, this paper focuses on the output of the first open call. In order to clarify this, the \emph{Introduction} section has been modify by adding the following text:
+		
+		\PaperExcerpt{Open calls have had a twofold objective: first to help maturing the platform by gathering feedback from external users; and secondly to analyze the platform sustainability for the future. Throughout this paper, accepted open call projects are termed experiments, and the actual people conducting these are referred to as experimenters and experiment team interchangeably. In addition, the term experimentation refers to the process of conducting an actual experiment.
+		The first version of the OC platform [9] was designed and validated within the OrganiCity consortium.\\\\
+		This initial version was exploited during the first open call, which served to gather information and feedback from experimenters. Afterwards, the platform was tweaked according to the feedback and the new version was released in the second open call, which was devoted to developing a co-creation methodology for establishing cross-collaboration between stakeholders, communities, sectors and countries in a smart city context.
+		In this paper we focus on the technical evolution, so that the work presented hereinafter spans from the period from which the OC platform was first deployed (initiation of first open call) to shortly before the second open call. In the first open call, a number of experiments have been selected and implemented, over a period of six months. Thanks to this key part of the OC project, experimenters have played an active role in the design and validation of our platform.}
+		
+	}	
+	%%
+	\Comment
+	{
+		Second, in the part of "learnings", authors explain the realization of 25  experiments in the first call, but they only explain 2 of them, perhaps different tables gathering comparable information about the experiments could help to better understand the significance of the objectives of the experiments. Quantifying results can help readers to obtain knowledge of the experiments performed. As it is suposed EaaS is a concept to be defined, each experiment should contain information about the requirements as a service needed for each experiment (i.e. software, platform, etc)
+	}
+	{
+		We appreciate this comment, since it shows that we need to clarify the target of the manuscript. We agree that the experiments may have different requirements and needs, and such evaluation may be really interesting to categorize city challenges and urban services. However, the OC platform aims to provide a common playground that serves them all, and the present work focuses on the platform itself. As commented previously, the initial platform design and implementation was tweaked according to the feedback from the first open call. These learnings are summarized in Table I, and refers to the shortcomings of the initial platform implementation, rather than to the experiments. \\
+		
+		In the current version of the manuscript we have clarified the target of the paper, as commented above, as well as the purpose of the OC platform:
+		
+		\PaperExcerpt{The OC platform provides a common playground where different stakeholders can co-create urban services [9], and adopt the functionalities offered by the platform that better serve their needs.}
+		
+		In addition, as the reviewer may see in the new version, we have extended Table I to indicate how the different learnings were addressed.
+		
+		
+		
+	}		
+	%%
+	\Comment
+	{
+		Third, the usability of the system for experiment design should be described for each experiment. As the evaluation system is described and some results are advanced (in terms of description reputation system/test and opinion with 5 stars), readers may expect the description of this results in this paper.
+	}
+	{
+		We agree that a detailed analysis of the performance of the 25 experiments will be interesting for the researchers working in this field. However, in this work we chose to focus on the learnings that served to improve the OC platform and the modifications that were performed accordingly, in order to present the EaaS aspects in an IoT/smart city context. Moreover, including such a detailed usability assessment of each experiment would require in our opinion a whole new article by itself, given the limitations in submission. We thus chose to highlight some specific aspects in order to present our work in a focused manner.
+        
+        On the other hand, such a usability assessment has been carried out within the OrganiCity project. Aspects regarding this activity are available in the form of a public deliverable ``D.5.5 - Usability assessment of first open call'' on the project website (http://organicity.eu/resources-news/resources/). We have added this reference in the current version of the manuscript [22].\\
+        
+     \small{[22] A. Heijnen, B. Palacios, L. Diez, M. Bach, J. Echevarria, J. Johansson,
+K. Kalugina, A. Rizk, K. Schaaf, and P. Lau, ``D5.5 usability
+assessment of organicitys first open call'' [Online]. Available:
+http://organicity.eu/resources-news/resources/ }\\   
+		
+		
+	}			
+\end{document}
